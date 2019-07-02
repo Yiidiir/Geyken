@@ -36,12 +36,12 @@ class ProductKeyController extends Controller
      */
     public function store(Request $request)
     {
-        return ProductKey::create(
+        return response()->json(ProductKey::create(
             [
                 'name' => $request->input('name'),
                 'key' => str_random(64),
             ]
-        );
+        ));
     }
 
     /**
@@ -50,9 +50,14 @@ class ProductKeyController extends Controller
      * @param \App\ProductKey $productKey
      * @return \Illuminate\Http\Response
      */
-    public function show(ProductKey $productKey)
+    public function show($id)
     {
-        //
+        $productKey = ProductKey::find($id);
+        if ($productKey) {
+            return response()->json($productKey);
+        }
+        return response()->json(['error' => 'Not found']
+            , 422);
     }
 
     /**
@@ -84,8 +89,16 @@ class ProductKeyController extends Controller
      * @param \App\ProductKey $productKey
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductKey $productKey)
+    public function destroy($id)
     {
-        //
+        $productKey = ProductKey::find($id);
+        if ($productKey) {
+            $keyDeleted = $productKey->delete();
+            if ($keyDeleted) {
+                return response()->json(['success' => 'Product Key Deleted'], 200);
+            }
+        }
+        return response()->json(['error' => 'Not found']
+            , 422);
     }
 }
