@@ -6,6 +6,9 @@ language: php
 php:
   - '7.2'
 
+git:
+  depth: false
+
 before_script:
   - composer self-update
   - composer install --no-interaction
