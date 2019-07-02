@@ -12,3 +12,7 @@ before_script:
 
 script:
   - vendor/bin/phpunit --coverage-text
+
+deploy:
+  provider: azure_web_apps
+  verbose: true
