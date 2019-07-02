@@ -16,7 +16,7 @@ class CreateProductKeysTable extends Migration
         Schema::create('product_keys', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('key');
+            $table->string('key', 64)->unique();
             $table->timestamps();
         });
     }

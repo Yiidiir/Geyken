@@ -14,7 +14,8 @@ class ProductKeyController extends Controller
      */
     public function index()
     {
-        //
+        $allKeys = ProductKey::all();
+        return response()->json($allKeys);
     }
 
     /**
@@ -30,18 +31,23 @@ class ProductKeyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        return ProductKey::create(
+            [
+                'name' => $request->input('name'),
+                'key' => str_random(64),
+            ]
+        );
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\ProductKey  $productKey
+     * @param \App\ProductKey $productKey
      * @return \Illuminate\Http\Response
      */
     public function show(ProductKey $productKey)
@@ -52,7 +58,7 @@ class ProductKeyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ProductKey  $productKey
+     * @param \App\ProductKey $productKey
      * @return \Illuminate\Http\Response
      */
     public function edit(ProductKey $productKey)
@@ -63,8 +69,8 @@ class ProductKeyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ProductKey  $productKey
+     * @param \Illuminate\Http\Request $request
+     * @param \App\ProductKey $productKey
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, ProductKey $productKey)
@@ -75,7 +81,7 @@ class ProductKeyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ProductKey  $productKey
+     * @param \App\ProductKey $productKey
      * @return \Illuminate\Http\Response
      */
     public function destroy(ProductKey $productKey)
