@@ -1,4 +1,4 @@
-# Geyken
+# Geyken [![Build Status](https://travis-ci.com/Yiidiir/Geyken.svg?token=M17XHVq2r8j1t3tdkzZo&branch=master)](https://travis-ci.com/Yiidiir/Geyken)
 
 REST API Server to generate & manage keys
 
@@ -103,13 +103,41 @@ php vendor/bin/phpcs --standard=psr2 src/ -n
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+Additional notes about how to deploy this on a live system
 
+### Automatic integration using Travis CI & Azure websites
+
+This repository already comes with  a `.travis.yml`
+- Add Travis CI [from the marketplace](https://github.com/apps/travis-ci)
+- Setup TravisCI env variables:
+```
+APP_DEBUG=
+APP_ENV=
+APP_KEY=
+APP_NAME=
+```
+- On Azure Dashboard create a new web app service.
+- Setup Deployment center to ``Local repository``
+- Create new user credentials and add them to TravisCI environment variables:
+```
+AZURE_WA_PASSWORD=
+AZURE_WA_SITE=
+AZURE_WA_USERNAME=
+```
+> Now everytime a commit is pushed to master, the code will be tested, if the tests are passed, it will be deployed to production.
+
+> Don't forget to set a separate Laravel .env file in the production environment where you set APP_ENV=production && APP_DEBUG=false
+
+### Manual Deployment using FTP
+If you're in a shared hosting or don't want to use a CI/CD pipeline:
+- In your CPanel account set PHP version to `7.2+`
+- Create an FTP account
+- Create a MySQL database
+- `cp .env.example .env` & set appropriate env values
+- Send your your code over FTP using FileZilla or another FTP client
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Laravel](https://laravel.com/) - The web framework used
 
 ## Contributing
 
