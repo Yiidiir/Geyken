@@ -146,8 +146,8 @@ If you're in a shared hosting or don't want to use a CI/CD pipeline:
 
 ## Upcoming Features
 
-- API Authentication
-- QR Code Product Keys
+- ~~API Authentication~~
+- ~~QR Code Product Keys~~
 - Product key pagination
 - Ability to set a validity period when generating keys
 
