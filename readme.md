@@ -144,6 +144,13 @@ If you're in a shared hosting or don't want to use a CI/CD pipeline:
 
 * [Laravel](https://laravel.com/) - The web framework used
 
+## Upcoming Features
+
+- API Authentication
+- QR Code Product Keys
+- Product key pagination
+- Ability to set a validity period when generating keys
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
