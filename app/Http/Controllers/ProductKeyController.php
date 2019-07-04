@@ -101,4 +101,11 @@ class ProductKeyController extends Controller
         return response()->json(['error' => 'Not found']
             , 422);
     }
+
+    public function getKeysSorted($sort)
+    {
+        $sort = ($sort == 'asc') ? 'asc' : 'desc';
+        $allKeysSorted = ProductKey::orderBy('created_at', $sort)->get();;
+        return response()->json($allKeysSorted);
+    }
 }
