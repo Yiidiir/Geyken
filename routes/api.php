@@ -19,3 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('keys/sorted/{sort}', 'ProductKeyController@getKeysSorted');
 Route::resource('keys', 'ProductKeyController');
+
+Route::fallback(function () {
+    return response()->json(['message' => 'Not Found!'], 404);
+})->name('fallback');
